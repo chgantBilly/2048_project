@@ -38,14 +38,10 @@ class GreedyAgent(Agent):
 
     def getScore(self, grid, move):
         score = 0
-        ret = grid.clone()
-        ret.move(move)
-        '''
+        rets = getKNewGrid(grid,move,4)
         for ret in rets:
             score += self.policy(ret)
         return score / len(rets)
-        '''
-        return self.policy(ret)
 
 
 

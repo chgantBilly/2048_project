@@ -50,8 +50,8 @@ def getKNewGrid(grid: Grid, dir, k=4):
     '''
     random sample k resulting grids with replacement
     '''
-    grids = getAllPossibleGrid(grid, dir)
-    return choices(grids, k=k)
+
+    return [getANewGrid(grid,dir) for _ in range(k)]
 
 
 def freeCellsHeuristic(grid: Grid):
