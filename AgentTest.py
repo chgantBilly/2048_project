@@ -48,13 +48,11 @@ class AgentTest:
             self.scoreDict[score] += 1
             if isWin:
                 self.winCount += 1
-            if i > 0 and (i + 1) % 10 == 0:
+            if i > 0 and (i + 1) % 5 == 0:
                 print('===== {}/{} tests done ====='.format((i + 1), self.testTurns))
         self.printStat()
 
 
 if __name__ == '__main__':
-    test = AgentTest(testAgent=MCTSAgent(simulateIter=50)
-                     , testTurns=10,verbose=250)
-
+    test = AgentTest(testAgent=MCTSAgent(simulateIter=50, rollingOutDepth=10),testTurns=50)
     test.main()

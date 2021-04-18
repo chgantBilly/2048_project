@@ -96,9 +96,9 @@ def monotonicityHeuristic(grid:Grid):
                 current = grid.mat[i][j]
                 if previous and current:
                     if current > previous:
-                        monotonicity_right += log2(previous) - log2(current)
+                        monotonicity_down += log2(previous) - log2(current)
                     elif current < previous:
-                        monotonicity_left += log2(current) - log2(previous)
+                        monotonicity_up += log2(current) - log2(previous)
 
     for i in range(size):
         previous, current = None, None
@@ -128,17 +128,19 @@ def edgeHeuristic(grid: Grid):
     value = 0
     for i in range(size):
         for j in range(size):
-            if (i == 0 or i == size) and (j == 0 or j == size - 1):
-                cellValue = 2 * log2(max(1, grid.mat[i][j]))
+            if grid.mat[i][j] == 0:
+                continue
+            elif (i == 0 or i == size) and (j == 0 or j == size - 1):
+                cellValue = 2 * log2(grid.mat[i][j])
             elif i == 0 or i == size - 1 or j == 0 or j == size - 1:
-                cellValue = log2(max(1, grid.mat[i][j]))
+                cellValue = log2(grid.mat[i][j])
             else:
-                cellValue = -log2(max(1, grid.mat[i][j]))
+                cellValue = -log2(grid.mat[i][j])
             value += cellValue
     return value
 
 if __name__ == '__main__':
     grid = Grid()
     grid.mat = [[1024,64,4,2],[128,512,16,8],[32,256,8,4],[4,128,4,2]]
-    print(smoothnessHeuristic(grid))
+    print(edgeHeuristic(grid))
 

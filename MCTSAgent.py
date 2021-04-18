@@ -205,7 +205,8 @@ def estimate(grid: Grid):
         return 1000
     if grid.isLose():
         return -1000
-    return (maxValueHeuristic(grid) + freeCellsHeuristic(grid) + monotonicityHeuristic(grid) // 2)
+    return (maxValueHeuristic(grid) + freeCellsHeuristic(grid) + 0.25 * edgeHeuristic(grid) + monotonicityHeuristic(grid))
+    #return freeCellsHeuristic(grid) + maxValueHeuristic(grid)
 
 
 
@@ -215,7 +216,7 @@ if __name__ == '__main__':
     #dis = BeatifulDisplay()
     #dis.display(g)
 
-    agent = MCTSAgent(simulateIter=100 ,rollingOutDepth=10,verbose=1)
+    agent = MCTSAgent(simulateIter=50, rollingOutDepth=2,verbose=1)
     move = agent.getMove(g)
     print(move)
 
