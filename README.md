@@ -9,10 +9,12 @@ Game implementation Modified from https://github.com/MeGaCrazy/2048-Puzzle-Solve
 - Game.py start a game
 - Agent.py abstract class + two naive agent(random and greedy)
 - MCTSAgent.py Monte Carlo Tree Search Agent
+- ExpectimaxAgent.py Expectimax Agent
 - AgentTest.py test class
-- Display.py terminal display(maybe add GUI in the future)
+- Display.py terminal display (a colored display on macOS terminal)
+- MatplotlibDisplay.py using matplotlib for (actually fake) GUI display
 - util.py some help function
 
-### check point
-- Apr 5 done game implement (Grid, Game, GreedyAgent, Test, etc.)
-- Apr 7 primarily done MCTS(with free cells heuristic only) test 10 times 40% winning rate
+## TODO
+1. Add CLI for game or agent testing.
+2. make testing parallel
