@@ -2,7 +2,6 @@ from Grid import Grid
 from random import randint
 from Agent import *
 from Display import Display, BeatifulDisplay
-from MatplotlibDisplay import MatplotlibDisplay
 from time import sleep
 
 from MCTSAgent import MCTSAgent
@@ -110,8 +109,8 @@ class Game:
 
 if __name__ == '__main__':
     game = Game()
-    game.setAgent(MCTSAgent(simulateIter=100, rollingOutDepth=10))
-    game.setDisplay(MatplotlibDisplay(),1)
+    game.setAgent(MCTSAgent(simulateIter=50, rollingOutDepth=10))
+    game.setDisplay(BeatifulDisplay(), 100)
     game.main()
 
 

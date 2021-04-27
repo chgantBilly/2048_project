@@ -49,10 +49,9 @@ class MatplotlibDisplay(Display):
 
 if __name__ == '__main__':
     g = Grid()
-    g.mat[0][0] = 2
-    g.mat[1][0] = 2
-    g.mat[3][0] = 4
+    g.mat = [[2048,128,64,0],[16,64,0,0],[4,0,0,0],[0,0,2,0]]
 
     md = MatplotlibDisplay()
     md.display(g)
+
 

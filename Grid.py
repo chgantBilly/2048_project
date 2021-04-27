@@ -4,14 +4,17 @@ from random import randint
 directionVectors = (UP_VEC, DOWN_VEC, LEFT_VEC, RIGHT_VEC) = ((-1, 0), (1, 0), (0, -1), (0, 1))
 vecIndex = [UP, DOWN, LEFT, RIGHT] = range(4)
 
+
 class Grid:
     '''
     Modified from https://github.com/MeGaCrazy/2048-Puzzle-Solver
     All game rules for 2048
     '''
-    def __init__(self, size = 4):
+
+    def __init__(self, size=4):
         self.size = size
         self.mat = [[0] * self.size for i in range(self.size)]
+        self.score = 0
 
     # Make a Deep Copy of This Object
     def clone(self):
@@ -34,7 +37,7 @@ class Grid:
         for x in range(self.size):
             for y in range(self.size):
                 if self.mat[x][y] == 0:
-                    cells.append((x,y))
+                    cells.append((x, y))
 
         return cells
 
@@ -66,7 +69,7 @@ class Grid:
 
     # Move Up or Down
     def moveUD(self, down):
-        r = range(self.size -1, -1, -1) if down else range(self.size)
+        r = range(self.size - 1, -1, -1) if down else range(self.size)
         moved = False
         for j in range(self.size):
             cells = []
@@ -110,14 +113,19 @@ class Grid:
         if len(cells) <= 1:
             return cells
         i = 0
+        moveScore = 0
         while i < len(cells) - 1:
-            if cells[i] == cells[i+1]:
+            if cells[i] == cells[i + 1]:
                 cells[i] *= 2
+                moveScore += cells[i]
 
-                del cells[i+1]
+                del cells[i + 1]
             i += 1
 
-    def canMove(self, dirs = vecIndex):
+        self.score = moveScore
+        # print(self.score)
+
+    def canMove(self, dirs=vecIndex):
         # Init Moves to be Checked
         checkingMoves = set(dirs)
         for x in range(self.size):
@@ -137,7 +145,7 @@ class Grid:
         return False
 
     # Return All Available Moves
-    def getAvailableMoves(self, dirs = vecIndex):
+    def getAvailableMoves(self, dirs=vecIndex):
         availableMoves = []
         for x in dirs:
             gridCopy = self.clone()
