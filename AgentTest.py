@@ -1,5 +1,7 @@
 from Agent import *
 from MCTSAgent import MCTSAgent
+from ApproximateQAgent import  ApproximateQAgent
+from ExpectimaxAgent import expectimaxAgent
 from Game import Game
 from Display import BeatifulDisplay
 
